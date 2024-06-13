@@ -1,0 +1,25 @@
+<mat-stepper
+  #stepper
+  [linear]="true"
+  [orientation]="(stepperOrientation$ | async)!"
+  class="example-stepper"
+  (selectionChange)="onStepClick($event)"
+>
+  <ng-template matStepperIcon="edit">
+    <mat-icon>done</mat-icon>
+  </ng-template>
+
+  <ng-template matStepperIcon="done">
+    <mat-icon>done</mat-icon>
+  </ng-template>
+  <ng-container *ngFor="let step of steps; let index = index">
+    <mat-step>
+      <ng-template matStepLabel>
+        <div [ngClass]="step.interacted ? 'border-grey' : ''"></div>
+        <div [ngStyle]="step.interacted ? { color: 'white' } : {}">
+          {{ step.label }}
+        </div>
+      </ng-template>
+    </mat-step>
+  </ng-container>
+</mat-stepper>
